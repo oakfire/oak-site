@@ -1,6 +1,10 @@
 oak-site
 ===============
 
-Codes for my site :deciduous_tree:[joak.org](http://joak.org) :earth_asia:
+Codes for my site :deciduous_tree: [joak.org](http://joak.org) 
 
-## TODO
+## :dog: TODO
+
+*  :newspaper: Layout
+*  :earth_asia: Links
+*  :name_badge: Weibo
