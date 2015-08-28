@@ -7,4 +7,5 @@ Codes for my site :deciduous_tree: [joak.org](http://joak.org)
 
 *  :newspaper: Layout
 *  :earth_asia: Links
-*  :name_badge: Weibo
+*  ![weibo](http://weibo.com/favicon.ico) Weibo
+*  ![battle.net](http://battle.net/favicon.ico) Battle net
