@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var logger = require('../lib/logger')('app');
+var config = require('../lib/config');
+
+logger.info('oak-site started, pid: ' + process.pid);
+
+var app = require('../lib/index.js');
+app.listen(config.port, config.host);
+
+logger.info('oak-site running at: ' + (config.host ? config.host : '') + ':' + config.port);

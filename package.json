@@ -1,0 +1,30 @@
+{
+  "name": "oak-site",
+  "version": "0.0.5",
+  "description": "oakfire personal site for joak.org",
+  "main": "app.js",
+  "scripts": {
+    "start": "node bin/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cli-table-zh": "^0.3.1",
+    "colors": "^1.0.3",
+    "commander": "^2.5.0",
+    "express": "^4.13.3",
+    "mkdirp": "*",
+    "moment": "*",
+    "morgan": "^1.6.1",
+    "optimist": "*",
+    "winston": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oakfire/oak-site.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.10.0",
+    "npm": ">=1.4.0"
+  }
+}
