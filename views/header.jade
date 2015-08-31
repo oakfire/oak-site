@@ -1,0 +1,20 @@
+.nvabar.navbar-inverse.navbar-fixed-top(role='navigation')
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button',data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/')=title
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        li#nav-home
+          a(href='/') Home
+        li#nav-about
+          a(href='/about') About
+      a.btn.btn-primary.navbar-btn.navbar-right(href=login ? '/logout' : '/login')=login ? 'Sign out' : 'Sign in'
+      if login
+        p.navbar-text.navbar-right Signed in as 
+          a.navbar-link(href='#')=user.account
+
