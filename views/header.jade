@@ -1,4 +1,4 @@
-.nvabar.navbar-inverse.navbar-fixed-top(role='navigation')
+.navbar.navbar-default.navbar-fixed-top(role='navigation')
   .container
     .navbar-header
       button.navbar-toggle(type='button',data-toggle='collapse', data-target='.navbar-collapse')
@@ -16,5 +16,5 @@
       a.btn.btn-primary.navbar-btn.navbar-right(href=login ? '/logout' : '/login')=login ? 'Sign out' : 'Sign in'
       if login
         p.navbar-text.navbar-right Signed in as 
-          a.navbar-link(href='#')=user.account
+          a.navbar-link(href='#',style='margin-left:5px')=user.account
 

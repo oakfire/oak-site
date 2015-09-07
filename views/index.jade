@@ -2,7 +2,9 @@ extends layout
 
 block content
   .container
-    .page-header 
-      h2 Hello World
-    - for (var i = 0; i <50; i++)
-      p 第 #{i} 行
+    #headimg.container
+      a.thumbnail(href='#')
+        img(src="http://placehold.it/1200x400")
+      hr
+    #article.container
+      h1 Article
