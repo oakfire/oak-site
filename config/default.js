@@ -9,4 +9,8 @@ module.exports = {
     log_level: 'info',
     /** log path, default: logs */
     //log_dir:  '/var/logs/'
+    instagram: {
+        client_id: 'your-client-id',
+        client_secret: 'your-client-secret'
+    }
 }
