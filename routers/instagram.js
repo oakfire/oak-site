@@ -3,10 +3,10 @@ var router = express.Router();
 var Instagram = require('instagram-node');
 var path = require('path');
 var config = require('../lib/config.js');
-var logger = require('../lib/logger.js');
+var logger = require('../lib/logger.js')('app');
 var fs = require('fs');
 
-var DATA_DIR = path.join(__dirname, 'data');
+var DATA_DIR = path.join(__dirname, '../data');
 require('mkdirp').sync(DATA_DIR);
 var AT_PATH = path.join(DATA_DIR, 'ins_access_token.json'); 
 
@@ -34,7 +34,7 @@ router.get('/', function onInsIndex(req, res) {
             var ato = { access_token: result.access_token };
             var fd = fs.openSync(AT_PATH, 'w');
             fs.writeSync(fd, JSON.stringify(ato));
-
+            fs.closeSync(fd);
             res.send('done!');
         }
     });
