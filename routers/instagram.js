@@ -48,11 +48,33 @@ router.get('/auth', function onInsAuth(req, res){
 
 router.use('/ajax/:func', function onInsAjax(req, res){
     var func = req.params.func;
-    if(req.method === 'post') {
+    if(req.method === 'POST') {
         if(func === 'headimg') {
-            //todo
+            var accessToken = {};
+            try {
+                accessToken = require(AT_PATH);
+            }catch(e) {}
+
+            if(!accessToken || accessToken.access_token) {
+                res.redirect('/ins/auth');
+                return;
+            }
+
+            ig.use({access_token: accessToken});
+            ig.user_self_media_recent({count:1}, function(err, medias, pagination, remaining, limit) {
+                if(err) {
+                    logger.error('ins ajax headimg fail, err:', err.toString());
+                    res.json({err:err});
+                    return;
+                }
+
+                res.json({url: medias[0].images.standard_resolution.url});
+            });
+
+            res.send(func);
         }
     }
+
 });
 
 module.exports = router;
