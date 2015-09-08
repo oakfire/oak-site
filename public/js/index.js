@@ -1,7 +1,7 @@
 
 $(window).load(function() {
     $.post('/ins/ajax/headimg')
-    .done(result){
+    .done(function(result){
         if(result.err){
             alert('get headimg err');
             return;
@@ -9,5 +9,5 @@ $(window).load(function() {
         
         alert(JSON.stringify(result));
         $('#headimg img').attr('src', result.url);
-    }
+    })
 });

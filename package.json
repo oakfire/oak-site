@@ -19,6 +19,7 @@
     "moment": "*",
     "morgan": "^1.6.1",
     "optimist": "*",
+    "promise": "^7.0.4",
     "winston": "*"
   },
   "repository": {

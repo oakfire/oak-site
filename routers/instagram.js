@@ -55,12 +55,13 @@ router.use('/ajax/:func', function onInsAjax(req, res){
                 accessToken = require(AT_PATH);
             }catch(e) {}
 
-            if(!accessToken || accessToken.access_token) {
+            logger.debug(JSON.stringify(accessToken));
+            if(!accessToken || !accessToken.access_token) {
                 res.redirect('/ins/auth');
                 return;
             }
 
-            ig.use({access_token: accessToken});
+            ig.use({access_token: accessToken.access_token});
             ig.user_self_media_recent({count:1}, function(err, medias, pagination, remaining, limit) {
                 if(err) {
                     logger.error('ins ajax headimg fail, err:', err.toString());
@@ -68,7 +69,9 @@ router.use('/ajax/:func', function onInsAjax(req, res){
                     return;
                 }
 
-                res.json({url: medias[0].images.standard_resolution.url});
+                logger.info(JSON.stringify(medias));
+
+                res.send({url: medias[0].images.standard_resolution.url});
             });
 
             res.send(func);
