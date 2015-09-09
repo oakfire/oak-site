@@ -75,8 +75,10 @@ router.use('/ajax/:func', function onInsAjax(req, res){
                 infos.push({name: medias[0].id + '_low.jpg', url: medias[0].images.low_resolution.url });
                 infos.push({name: medias[0].id + '_standard.jpg', url: medias[0].images.standard_resolution.url }); 
                 cache.downloadAll(infos).then( function(results) {
-                    res.send({url: '/cache/' + infos[1].name});
+                    logger.info('download all done.');
+                    res.json({url: '/cache/' + infos[1].name});
                 }, function(err) {
+                    logger.error('download all fail.');
                     res.json(err);
                 });
 
