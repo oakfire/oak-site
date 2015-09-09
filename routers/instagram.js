@@ -5,6 +5,7 @@ var path = require('path');
 var config = require('../lib/config.js');
 var logger = require('../lib/logger.js')('app');
 var fs = require('fs');
+var cache = require('../lib/cache.js');
 
 var DATA_DIR = path.join(__dirname, '../data');
 require('mkdirp').sync(DATA_DIR);
@@ -70,11 +71,16 @@ router.use('/ajax/:func', function onInsAjax(req, res){
                 }
 
                 logger.info(JSON.stringify(medias));
+                var infos = [];
+                infos.push({name: medias[0].id + '_low.jpg', url: medias[0].images.low_resolution.url });
+                infos.push({name: medias[0].id + '_standard.jpg', url: medias[0].images.standard_resolution.url }); 
+                cache.downloadAll(infos).then( function(results) {
+                    res.send({url: '/cache/' + infos[1].name});
+                }, function(err) {
+                    res.json(err);
+                });
 
-                res.send({url: medias[0].images.standard_resolution.url});
             });
-
-            res.send(func);
         }
     }
 

@@ -14,13 +14,13 @@ router.get('/about', function(req, res){
 
 router.get('/cache/:name', function(req, res) {
     var name = req.params.name;
-    var filePath = cache.find(name);
+    var info = cache.find(name);
     if(!filePath) {
         res.sendStatus(404);
         return;
     }
 
-    res.sendFile(filePath);
+    res.sendFile(info.pathname);
 });
 
 module.exports = router;
