@@ -11,6 +11,8 @@
       ul.nav.navbar-nav
         li#nav-home
           a(href='/') Home
+        li#nav-photo
+          a(href='/photo') Photo
         li#nav-about
           a(href='/about') About
       a.btn.btn-primary.navbar-btn.navbar-right(href=login ? '/logout' : '/login')=login ? 'Sign out' : 'Sign in'

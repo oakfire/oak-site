@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  .container
+    .row
+      - for(var i = 0; i<8 ; ++i)
+        .col-sm-6.col-md-3.col-xs-6
+          .thumbnail(data-toggle='model' data-target='#bigimg')
+            img(src='http://placehold.it/306x306', alt='my photo')
+            .caption
+              h3 photo-title
+              p some photo-description
+  #bigimg.modal.fade(tabindex='-1' role='dialog')
+    .modal-dialog.modal-lg(role='document')
+      .modal-content
+        .modal-header
+          button.close(type='button' data-dismiss='modal' aria-label='Close'): span &times;
+          h3 photo-title
+        .modal-body
+          .row
+            .col-xs-12
+              .thumbnail(style='max-widht:640px; margin: 0 auto')
+                img(src='http://placehold.it/640x640', alt='my photo')
+        .modal-footer
+          p some photo-description
+
+block extend_script
+  script(type='text/javascript').
+    $('.thumbnail').on('click', function(){
+      $('#bigimg').modal('show');
+    });
+

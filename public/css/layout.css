@@ -25,9 +25,9 @@ body > .container {
   padding-right: 15px;
   padding-left: 15px;
 }
-a.thumbnail img {
+.thumbnail img {
   transition: all 0.3s ease 0s, opacity 0s ease 0s;
 }
-a.thumbnail:hover img {
+.thumbnail:hover img {
   opacity: 0.8;
 }

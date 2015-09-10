@@ -5,9 +5,9 @@ Codes for my site :deciduous_tree: [joak.org](http://joak.org)
 
 ## :dog: TODO
 
-*  :newspaper: Layout
+*  :newspaper: Layout :white_check_mark:
 *  :earth_asia: Links
-*  instagram
+*  instagram :soon:
 *  weixin
 *  github
 *  skills load map
@@ -19,4 +19,5 @@ Codes for my site :deciduous_tree: [joak.org](http://joak.org)
    * base64 translation
 *  ![battle.net](http://battle.net/favicon.ico) Battle net
 *  eve
-
+*  login system
+*  cms

@@ -26,19 +26,24 @@ ig.use(config.instagram);
 var REDIRECT_URI = 'http://joak.org/ins/';
 
 router.get('/', function onInsIndex(req, res) {
-    ig.authorize_user(req.query.code, REDIRECT_URI, function(err, result) {
-        if (err) {
-            logger.error('ins fail to auth, err:', err.body);
-            res.send('error!, please retry.');
-        } else {
-            logger.info('ins access token:', result.access_token);
-            var ato = { access_token: result.access_token };
-            var fd = fs.openSync(AT_PATH, 'w');
-            fs.writeSync(fd, JSON.stringify(ato));
-            fs.closeSync(fd);
-            res.send('done!');
-        }
-    });
+    if(req.baseUrl === '/ins'){
+        ig.authorize_user(req.query.code, REDIRECT_URI, function(err, result) {
+            if (err) {
+                logger.error('ins fail to auth, err:', err.body);
+                res.send('error!, please retry.');
+            } else {
+                logger.info('ins access token:', result.access_token);
+                var ato = { access_token: result.access_token };
+                var fd = fs.openSync(AT_PATH, 'w');
+                fs.writeSync(fd, JSON.stringify(ato));
+                fs.closeSync(fd);
+                res.send('done!');
+            }
+        });
+    }else { //photo
+        res.render('photo', {page: 'photo'});
+    }
+
 });
 
 
