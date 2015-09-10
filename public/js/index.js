@@ -7,7 +7,8 @@ $(window).load(function() {
             return;
         }
         
-        alert(JSON.stringify(result));
+        //alert(JSON.stringify(result));
+        //instagram img resolution: 640x640
         $('#headimg img').attr('src', result.url);
     })
 });
