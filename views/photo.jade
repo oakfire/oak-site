@@ -2,7 +2,7 @@ extends layout
 
 block content
   .container
-    .row
+    #photos.row
       - for(var i = 0; i<8 ; ++i)
         .col-sm-6.col-md-3.col-xs-6
           .thumbnail(data-toggle='model' data-target='#bigimg')
@@ -25,6 +25,7 @@ block content
           p some photo-description
 
 block extend_script
+  script(src='js/photo.js')
   script(type='text/javascript').
     $('.thumbnail').on('click', function(){
       $('#bigimg').modal('show');
