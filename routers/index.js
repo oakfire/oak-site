@@ -10,7 +10,8 @@ router.get('/', function onIndex(req, res){
 });
 
 router.get('/about', function(req, res){
-    res.send('About page');
+    var renderData = {};
+    res.render('About', renderData);
 });
 
 router.get('/cache/:name', function(req, res) {
