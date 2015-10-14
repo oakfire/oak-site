@@ -31,3 +31,9 @@ body > .container {
 .thumbnail:hover img {
   opacity: 0.8;
 }
+.modal-dialog .thumbnali img {
+  transition: all 0 ease 0;
+}
+.modal-dialog .thumbnail:hover img {
+  opacity: 1.0;
+}
