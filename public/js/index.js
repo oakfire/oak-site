@@ -12,4 +12,7 @@ $(window).load(function() {
         $('#headimg').css('width', '650px');
         $('#headimg img').attr('src', result.url);
     })
+    .fail(function(){
+        alert('get headimg fail');
+    });
 });

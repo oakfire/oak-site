@@ -58,10 +58,10 @@ function getInsImages(accessToken, count, cb){
         var images = [];
         medias.forEach(function(media){
             infos.push({id: media.id,
-                img_low: media.id + '_low.jpg',
-                img_std: media.id + '_standard.jpg',
-                caption: media.caption.text||'',
-                created_time: media.caption.created_time
+                url_low: '/cache/' + media.id + '_low.jpg',
+                url_std: '/cache/' + media.id + '_standard.jpg',
+                caption: media.caption ? media.caption.text : 'photo',
+                created_time: media.caption ? media.caption.created_time : false
             });
             images.push({name: media.id + '_low.jpg', url: media.images.low_resolution.url });
             images.push({name: media.id + '_standard.jpg', url: media.images.standard_resolution.url }); 
@@ -104,7 +104,7 @@ router.use('/ajax/:func', function onInsAjax(req, res){
             }
 
             if(func === 'headimg'){
-                res.json({url: '/cache/' + infos[1].name});
+                res.json({url: infos[0].url_std});
             }else if(func === 'recent'){
                 res.json(infos);
             }
