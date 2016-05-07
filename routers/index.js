@@ -11,7 +11,7 @@ router.get('/', function onIndex(req, res){
 
 router.get('/about', function(req, res){
     var renderData = {};
-    res.render('About', renderData);
+    res.render('about', renderData);
 });
 
 router.get('/cache/:name', function(req, res) {
