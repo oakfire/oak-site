@@ -9,7 +9,7 @@ $(window).load(function() {
         
         //alert(JSON.stringify(result));
         //instagram img resolution: 640x640
-        $('#headimg').css('width', '650px');
+        $('.img-container').css('width', '650px');
         $('#headimg img').attr('src', result.url);
     })
     .fail(function(){
