@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .container
+    .well
+      - for(var i = 0; i<toolsInfo.length ; ++i)
+          a.btn.btn-default(href="/tools/"+toolsInfo[i].path, role="button")=  toolsInfo[i].name
+
+    block tool_content 

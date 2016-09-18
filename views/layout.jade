@@ -4,13 +4,13 @@ html
     title= title
     meta(charset='utf-8')
     meta(http-equiv="X-UA-Compatible" content="IE=edge")
-    meta(name='viewport', content='width=device-width, initial-scal=1')
-    link(rel='stylesheet', href='css/layout.css')
-    link(rel='stylesheet', href='bootstrap-3.3.5/css/bootstrap.min.css')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='/css/layout.css')
+    link(rel='stylesheet', href='/bootstrap-3.3.5/css/bootstrap.min.css')
+    include ./script.jade
     block extent_head
   body.footer-margin
     include ./header.jade
     block content
     include ./footer.jade
-    include ./script.jade
     block extend_script

@@ -17,10 +17,16 @@
           a(href='http://wp.joak.org') Blog
         li
           a(href='http://wiki.joak.org') Wiki
+        li 
+          a(href='/tools') Tools
         li#nav-about
           a(href='/about') About
       a.btn.btn-primary.navbar-btn.navbar-right(href=login ? '/logout' : '/login')=login ? 'Sign out' : 'Sign in'
       if login
         p.navbar-text.navbar-right Signed in as 
           a.navbar-link(href='#',style='margin-left:5px')=user.account
-
+script(type='text/javascript').
+  var path = window.location.pathname;
+  var page = '/' + path.split('/')[1];
+  page = page.toLowerCase();
+  $('a[href="' + page + '"]').parent().addClass('active');
