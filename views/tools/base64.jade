@@ -1,3 +1,34 @@
 extends ../tools.jade
 block tool_content
-    p I am base64
+  .container
+    p.text-center 使用了 UTF-8 编码来进行 BASE64 转换
+    textarea#intext.center-block(style='width:600px;height:120px;')
+    .text-center(style='margin:10px 0')
+      button#encode.btn.btn-info 加密
+      &nbsp;&nbsp;
+      button#decode.btn.btn-warning 解密
+    textarea#outtext.center-block(style='width:600px;height:120px;' readonly)
+block extend_script
+  script(type='text/javascript').
+    $('#encode').on('click',function(){
+      var intext = $('#intext').val();
+      var intext = unescape(encodeURIComponent(intext));
+      var outtext = '';
+      try{
+        outtext = window.btoa(intext);
+      }catch(e){
+        outtext = e.message; 
+      }
+      $('#outtext').val(outtext);
+    });
+    $('#decode').on('click',function(){
+      var intext = $('#intext').val();
+      var outtext = '';
+      try{
+        outtext = window.atob(intext);
+        outtext = decodeURIComponent(escape(outtext));
+      }catch(e){
+        outtext = e.message;
+      }
+      $('#outtext').val(outtext);
+    });
