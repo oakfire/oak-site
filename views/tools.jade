@@ -4,7 +4,7 @@ block content
   .container
     .well
       - for(var i = 0; i<toolsInfo.length ; ++i)
-          a.btn.btn-default(href="/tools/"+toolsInfo[i].path, role="button")=  toolsInfo[i].name
-          &nbsp;&nbsp;
+        a.btn.btn-default(href="/tools/"+toolsInfo[i].path, role="button")=  toolsInfo[i].name
+        span &nbsp;&nbsp;
 
     block tool_content 

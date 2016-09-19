@@ -45,3 +45,21 @@ div#weibo.container-fluid {
   padding: 10px 50px;
   background-color: #B2EBF2;
 }
+.ascii-table > * > tr > td,
+.ascii-table > * > tr > th,
+.ascii-table > tr > th,
+.ascii-table > tr > td {
+  border: 1px solid #aaa;
+  padding: 0.2em 0.4em;
+}
+.ascii-table > tr > th,
+.ascii-table > * > tr > th {
+  background-color: #f2f2f2;
+  text-align: center;
+}
+.ascii-table > caption {
+  text-align: center;
+}
+.ascii-table .character {
+  color: #0c61b4;
+}

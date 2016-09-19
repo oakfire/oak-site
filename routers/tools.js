@@ -12,7 +12,7 @@ var toolsInfo = [
         name: 'ASCII 编码表',
         path: 'ASCII',
     },
-]
+];
 
 router.get('/', function onToolsIndex(req, res) {
     var renderData = { toolsInfo: toolsInfo };
