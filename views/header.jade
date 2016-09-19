@@ -21,7 +21,7 @@
           a(href='/tools') Tools
         li#nav-about
           a(href='/about') About
-      a.btn.btn-primary.navbar-btn.navbar-right(href=login ? '/logout' : '/login')=login ? 'Sign out' : 'Sign in'
+      a.btn.btn-info.navbar-btn.navbar-right.disabled(href=login ? '/logout' : '/login')=login ? 'Sign out' : 'Sign in'
       if login
         p.navbar-text.navbar-right Signed in as 
           a.navbar-link(href='#',style='margin-left:5px')=user.account

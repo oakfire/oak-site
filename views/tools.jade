@@ -4,7 +4,7 @@ block content
   .container
     .well
       - for(var i = 0; i<toolsInfo.length ; ++i)
-        a.btn.btn-default(href="/tools/"+toolsInfo[i].path, role="button")=  toolsInfo[i].name
+        a.btn(class=toolsInfo[i].path == toolname ? 'btn-info disabled':'btn-default' href='/tools/'+toolsInfo[i].path, role='button')=  toolsInfo[i].name
         span &nbsp;&nbsp;
 
     block tool_content 
