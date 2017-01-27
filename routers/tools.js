@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var config = require('../lib/config.js');
-var logger = require('../lib/logger.js')('app');
+'use strict';
+const express = require('express');
+const router = express.Router();
+const config = require('../lib/config.js');
+const logger = require('../lib/logger.js')('app');
 
-var toolsInfo = [
+const toolsInfo = [
     { 
         name: 'BASE64 编解码',
         path: 'base64',
@@ -19,7 +20,7 @@ var toolsInfo = [
 ];
 
 function checkTool(path) {
-    for(var i = 0; i < toolsInfo.length; ++i){
+    for(let i = 0; i < toolsInfo.length; ++i){
         if(toolsInfo[i].path == path) {
            return true;
         }
@@ -27,17 +28,17 @@ function checkTool(path) {
     return false; 
 }
 
-router.get('/', function onToolsIndex(req, res) {
-    var renderData = { toolsInfo: toolsInfo };
+router.get('/', function onToolsIndexN(req, res) {
+    let renderData = { toolsInfo: toolsInfo };
     res.render('tools', renderData);  
 });
 
-router.get('/:toolname', function onToolContent(req, res, next){
-    var toolname = req.params.toolname;
+router.get('/:toolname', function onToolContentN(req, res, next){
+    let toolname = req.params.toolname;
     if(!checkTool(toolname)){
         return next();
     }
-    var renderData = { 
+    let renderData = { 
         toolsInfo: toolsInfo,
         toolname: toolname,
     };

@@ -1,32 +1,33 @@
-var express = require('express');
-var router = express.Router();
-var Instagram = require('instagram-node');
-var path = require('path');
-var config = require('../lib/config.js');
-var logger = require('../lib/logger.js')('app');
-var fs = require('fs');
-var cache = require('../lib/cache.js');
+'use strict';
+const express = require('express');
+const router = express.Router();
+const Instagram = require('instagram-node');
+const path = require('path');
+const config = require('../lib/config.js');
+const logger = require('../lib/logger.js')('app');
+const fs = require('fs');
+const cache = require('../lib/cache.js');
 
-var DATA_DIR = path.join(__dirname, '../data');
+const DATA_DIR = path.join(__dirname, '../data');
 require('mkdirp').sync(DATA_DIR);
-var AT_PATH = path.join(DATA_DIR, 'ins_access_token.json'); 
+const AT_PATH = path.join(DATA_DIR, 'ins_access_token.json'); 
 
-var ig = Instagram.instagram();
+let ig = Instagram.instagram();
 ig.use(config.instagram);
 
 
-var REDIRECT_URI = 'http://joak.org/ins/';
+const REDIRECT_URI = 'http://joak.org/ins/';
 
 router.get('/', function onInsIndex(req, res) {
     if(req.baseUrl === '/ins'){
-        ig.authorize_user(req.query.code, REDIRECT_URI, function(err, result) {
+        ig.authorize_user(req.query.code, REDIRECT_URI, function authorizeUserCB(err, result) {
             if (err) {
                 logger.error('ins fail to auth, err:', err.body);
                 res.send('error!, please retry.');
             } else {
                 logger.info('ins access token:', result.access_token);
-                var ato = { access_token: result.access_token };
-                var fd = fs.openSync(AT_PATH, 'w');
+                let ato = { access_token: result.access_token };
+                let fd = fs.openSync(AT_PATH, 'w');
                 fs.writeSync(fd, JSON.stringify(ato));
                 fs.closeSync(fd);
                 res.send('done!');
@@ -46,7 +47,7 @@ router.get('/auth', function onInsAuth(req, res){
 
 function getInsImages(accessToken, count, cb){
     ig.use({access_token: accessToken.access_token});
-    ig.user_self_media_recent({count:count}, function(err, medias, pagination, remaining, limit) {
+    ig.user_self_media_recent({count:count}, function userSelfMediaRecentCB(err, medias, pagination, remaining, limit) {
         if(err) {
             logger.error('ins ajax img fail, err:', err.toString());
             cb(err);
@@ -54,9 +55,9 @@ function getInsImages(accessToken, count, cb){
         }
 
         //logger.info(JSON.stringify(medias));
-        var infos = [];
-        var images = [];
-        medias.forEach(function(media){
+        let infos = [];
+        let images = [];
+        medias.forEach(function forEachMediasCB(media){
             infos.push({id: media.id,
                 url_low: '/cache/' + media.id + '_low.jpg',
                 url_std: '/cache/' + media.id + '_standard.jpg',
@@ -66,16 +67,18 @@ function getInsImages(accessToken, count, cb){
             images.push({name: media.id + '_low.jpg', url: media.images.low_resolution.url });
             images.push({name: media.id + '_standard.jpg', url: media.images.standard_resolution.url }); 
         });
-        cache.downloadAll(images).then(function(){
+        cache.downloadAll(images)
+        .then( () => {
             cb(null, infos);
-        }, cb);
+        })
+        .catch( err => cb(err));
     });
 }
 
 router.use('/ajax/:func', function onInsAjax(req, res){
-    var func = req.params.func;
+    let func = req.params.func;
     if(req.method === 'POST') {
-        var count = 16;
+        let count = 16;
 
         if(func === 'headimg') {
             count = 1;
@@ -85,7 +88,7 @@ router.use('/ajax/:func', function onInsAjax(req, res){
             res.json(false);
         }
 
-        var accessToken = {};
+        let accessToken = {};
         try {
             accessToken = require(AT_PATH);
         }catch(e) {}
@@ -96,7 +99,7 @@ router.use('/ajax/:func', function onInsAjax(req, res){
             return;
         }
 
-        getInsImages(accessToken, count, function(err, infos){
+        getInsImages(accessToken, count, function getInsImagesCB(err, infos){
             if(err){
                 logger.error('getInsImages fail: ', err.toString());
                 res.json(err);
