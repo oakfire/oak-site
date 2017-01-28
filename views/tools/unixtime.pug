@@ -4,10 +4,27 @@ block tool_content
     .center-block(style="width:600px")
       .form-horizontal
         .form-group
-          label.col-sm-3.control-label UNIX 时间戳
-          .col-sm-8
-            input#unixtime.form-control
+          label.col-sm-3.control-label 当前时间戳
+          .col-sm-6
+            .input-group
+              .input-group-btn
+                button#btn-go.btn.btn-info(type="button")
+                  i.fa.fa-fw.fa-play
+              input#cur-unixtime.form-control(readonly)
+              .input-group-btn
+                button#btn-pause.btn.btn-info(type="button")
+                  i.fa.fa-fw.fa-pause
+                button#btn-copy.btn.btn-info(type="button")
+                  i.fa.fa-fw.fa-long-arrow-down
         .form-group
+          label.col-sm-3.control-label UNIX 时间戳
+          .col-sm-6
+            .input-group
+              input#unixtime.form-control
+              .input-group-btn
+                a#to-utc.btn.btn-info
+                  i.fa.fa-fw.fa-long-arrow-down
+        //.form-group
           .text-center
             a#to-utc.btn.btn-info
               i.fa.fa-fw.fa-long-arrow-down
@@ -16,42 +33,66 @@ block tool_content
               i.fa.fa-fw.fa-long-arrow-up
         .form-group
           label.col-sm-3.control-label UTC 时间
-            small.text-muted (iso8601)
-          .col-sm-8
-            input#utctime.form-control
-
+          .col-sm-6
+            .input-group
+              input#utctime.form-control
+              .input-group-btn
+                a#to-unix.btn.btn-info
+                  i.fa.fa-fw.fa-long-arrow-up
+            p.help-block
+              a(src="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15") iso8601:
+              |"YYYY-MM-DDTHH:mm:ss.sssZ"
+            p.help-block 加 8 小时即为北京时间
 block append foot_scripts
   script(type='text/javascript').
+    $('#cur-unixtime').val(Math.round(Date.now()/1000));
+    var unixtime_timer;
+    var _getNow = function (){
+        if(!unixtime_timer){
+            unixtime_timer = setInterval( function(){
+                $('#cur-unixtime').val(Math.round(Date.now()/1000));
+            }, 1000);
+        }
+    };
+    _getNow();
+    var _pauseGetNow = function() {
+        if(unixtime_timer) {
+            clearInterval(unixtime_timer);
+            unixtime_timer = null;
+        }
+    };
+
+    $('#btn-go').on('click', function() {
+        _getNow();
+        $('#cur-unixtime').focus();
+    });
+    $('#btn-pause').on('click', function() {
+        _pauseGetNow();
+        $('#cur-unixtime').focus();
+    });
+
+    $('#btn-copy').on('click', function() {
+        $('#unixtime').val($('#cur-unixtime').val()).focus();
+    });
+
     $('#to-utc').on('click',function(){
-      var intext = $('#unixtime').val();
-      var unix = parseInt(intext);
-      var thedate = new Date(unix * 1000);
-      var outtext = thedate.getUTCFullYear()
-          + '-'
-          + (thedate.getUTCMonth()+1)
-          + '-'
-          + thedate.getUTCDate()
-          + 'T'
-          + thedate.getUTCHours()
-          + ':'
-          + thedate.getUTCMinutes()
-          + ':'
-          + thedate.getUTCSeconds()
-          + 'Z'
-        ;//iso8601
-      $('#utctime').val(outtext);
+        var intext = $('#unixtime').val();
+        var unix = parseInt(intext);
+        var thedate = new Date(unix * 1000);
+        var outtext = thedate.toISOString();
+        $('#utctime').val(outtext);
     });
     $('#to-unix').on('click',function(){
-      var intext = $('#utctime').val();
-      var outtext;
-      try{
-        var thedate = new Date(intext);
-        outtext = Math.round(thedate/1000) - thedate.getTimezoneOffset()*60;
-      }catch(e){
-        outtext = e.message;
-      }
-      $('#unixtime').val(outtext);
+        var intext = $('#utctime').val();
+        var outtext;
+        try{
+            var thedate = new Date(intext);
+            outtext = Math.round(thedate.getTime()/1000);
+        }catch(e){
+            outtext = e.message;
+        }
+        $('#unixtime').val(outtext);
     });
     $('#unixtime').on('focus', function(){
-      $(this).select();
+        $(this).select();
     });
