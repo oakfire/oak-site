@@ -8,10 +8,9 @@ html
     link(rel='stylesheet', href='/css/layout.css')
     link(rel='stylesheet', href='/bootstrap-3.3.5/css/bootstrap.min.css')
     link(rel='stylesheet', href='/css/font-awesome.min.css')
-    include ./script.jade
-    block extent_head
+    include ./script.pug
   body.footer-margin
-    include ./header.jade
+    include ./header.pug
     block content
-    include ./footer.jade
-    block extend_script
+    include ./footer.pug
+    block foot_scripts

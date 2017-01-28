@@ -1,4 +1,4 @@
-extends ../tools.jade
+extends ../tools.pug
 block tool_content
   .containeri-fluid
     .center-block(style="width:600px")
@@ -16,10 +16,11 @@ block tool_content
               i.fa.fa-fw.fa-long-arrow-up
         .form-group
           label.col-sm-3.control-label UTC 时间
+            small.text-muted (iso8601)
           .col-sm-8
             input#utctime.form-control
 
-block extend_script
+block append foot_scripts
   script(type='text/javascript').
     $('#to-utc').on('click',function(){
       var intext = $('#unixtime').val();
@@ -30,13 +31,14 @@ block extend_script
           + (thedate.getUTCMonth()+1)
           + '-'
           + thedate.getUTCDate()
-          + ' '
+          + 'T'
           + thedate.getUTCHours()
           + ':'
           + thedate.getUTCMinutes()
           + ':'
           + thedate.getUTCSeconds()
-        ;
+          + 'Z'
+        ;//iso8601
       $('#utctime').val(outtext);
     });
     $('#to-unix').on('click',function(){

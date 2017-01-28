@@ -1,4 +1,4 @@
-extends ../tools.jade
+extends ../tools.pug
 block tool_content
   .container
     p.text-center 使用了 UTF-8 编码来进行 BASE64 转换
@@ -8,7 +8,7 @@ block tool_content
       span &nbsp;&nbsp;
       button#decode.btn.btn-warning 解密
     textarea#outtext.center-block(style='width:600px;height:120px;background-color:#f2f2f2' readonly)
-block extend_script
+block append foot_scripts
   script(type='text/javascript').
     $('#encode').on('click',function(){
       var intext = $('#intext').val();

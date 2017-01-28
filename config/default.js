@@ -1,5 +1,5 @@
 /** if changed conifg, restart process to enable new config */
-module.exports = {    
+module.exports = {
     /** default port */
     port: 3001,
     host: '127.0.0.1',

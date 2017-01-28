@@ -12,15 +12,14 @@
     "cli-table-zh": "^0.3.1",
     "colors": "^1.0.3",
     "commander": "^2.5.0",
-    "express": "^4.13.3",
+    "express": "^4.14.0",
     "instagram-node": "^0.5.8",
-    "jade": "^1.11.0",
-    "mkdirp": "*",
-    "moment": "*",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.17.1",
     "morgan": "^1.6.1",
-    "optimist": "*",
-    "promise": "^7.0.4",
-    "winston": "*"
+    "optimist": "^0.6.1",
+    "pug": "^2.0.0-beta9",
+    "winston": "^2.3.1"
   },
   "repository": {
     "type": "git",
@@ -28,13 +27,14 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=0.10.0",
-    "npm": ">=1.4.0"
+    "node": ">=6.0.0",
+    "npm": ">=3.0.0"
   },
   "devDependencies": {
-    "grunt": "^0.4.5",
-    "grunt-contrib-jshint": "^0.11.2",
-    "grunt-contrib-less": "^1.0.1"
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-puglint": "^1.0.0"
   },
   "jshintConfig": {
     "node": true,
