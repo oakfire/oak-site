@@ -6,7 +6,7 @@ block content
       - for(var i = 0; i<8 ; ++i)
         .col-sm-6.col-md-3.col-xs-6
           .thumbnail(data-toggle='model' data-target='#bigimg')
-            img(src='http://placehold.it/306x306', alt='my photo')
+            img(src='holder.js/306x306?random=yes', alt='my photo')
             .caption
               h3 photo-title
               p some photo-description
@@ -25,6 +25,7 @@ block content
           p some photo-description
 
 block append foot_scripts
+  script(src='/js/holder.min.js')
   script(src='/js/photo.js')
   script(type='text/javascript').
     $('.thumbnail').on('click', function(){
