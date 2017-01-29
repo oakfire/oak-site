@@ -7,8 +7,7 @@ $(window).load(function() {
             alert('get recent photos fail');
             return;
         }
-       
-        infos = result; 
+        infos = result;
         //alert(JSON.stringify(result));
         //instagram img resolution: 640x640
         var $photos = $('#photos');
@@ -24,8 +23,8 @@ $(window).load(function() {
                 +'</div>'
                 +'</div>'
                 +'</div>'
-                ); 
-        }); 
+                );
+        });
 
 
         $('.thumbnail').on('click', function(){
