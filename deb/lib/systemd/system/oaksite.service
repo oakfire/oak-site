@@ -1,0 +1,12 @@
+# Oak-site systemd service file
+
+[Unit]
+Description=Oak Site Server
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+Restart=on-failure
+ExecStart=/home/oak/oak-site/bin/app
