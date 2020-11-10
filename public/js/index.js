@@ -1,5 +1,6 @@
 
 $(window).load(function() {
+/* //to wait upgrade ins api
     $.post('/ins/ajax/headimg')
     .done(function(result){
         if(result.err){
@@ -15,4 +16,5 @@ $(window).load(function() {
     .fail(function(){
         alert('get headimg fail');
     });
+*/
 });
